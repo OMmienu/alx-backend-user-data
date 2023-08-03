@@ -7,9 +7,9 @@ import bcrypt
 
 def hash_password(password: str) -> bytes:
     """Encrypting  the given password and returns a salted hash"""
-    #Generate a random salt 
+    # Generate a random salt
     salt = bcrypt.gensalt()
-    #Hash the password with the salt
+    # Hash the password with the salt
     return bcrypt.hashpw(password.encode('utf-8'), salt)
 
 
