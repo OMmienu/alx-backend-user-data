@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicAuthentication module Base64 
+BasicAuthentication module Base64
 """
 from base64 import b64decode
 from typing import Tuple, TypeVar
