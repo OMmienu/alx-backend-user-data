@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 """
-Authentication Class
+Authentication Module
 """
 import re
+from os import getenv
 from typing import List, TypeVar
 
 from flask import request
 
 
 class Auth:
-    """Class Authentication of an API"""
+    """A class to manage Authentication"""
 
     def require_auth(self, path: str, exclude_paths: List[str]) -> bool:
         """
-        Require authentication for all paths inclusive
+        Require authentication for all the paths except the ones in
+        exclude_paths
 
         Return:
             - True if the path is not in the list of strings exclude_paths
+            else False
         """
         if path is None or exclude_paths is None or exclude_paths == []:
             return True
@@ -33,6 +36,7 @@ class Auth:
         """
         Return:
             - the value of the header request Authorization or None
+            if request doesn't contain Authorization header
         """
         if request is None:
             return None
@@ -44,3 +48,12 @@ class Auth:
             - the current user
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        Return:
+            - the value of the cookie request.session_id or None
+        """
+        if request is None:
+            return None
+        return request.cookies.get(getenv('SESSION_NAME'))
