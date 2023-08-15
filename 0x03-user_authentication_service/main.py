@@ -9,7 +9,7 @@ print(User.__tablename__)
 for column in User.__table__.columns:
     print("{}: {}".format(column, column.type))
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
 
     register_user(EMAIL, PASSWD)
     log_in_wrong_password(EMAIL, NEW_PASSWD)
